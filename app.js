@@ -1,38 +1,23 @@
 var express = require('express'), 
-    fs = require('fs'),
-    routes = require('./routes');
+    fs = require('fs');
 
 var app = module.exports = express.createServer();
 
 // Configuration
-
 app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));
 });
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-
-app.configure('production', function(){
-  app.use(express.errorHandler());
-});
-
-// Routes
-app.get('/', routes.index);
-
-app.get('/ripple.crx', function (req, res) {
-    res.send('ripple download!');
+app.get('/', function (req, res) {
+    res.sendfile(__dirname + '/public/index.html');
 });
 
 app.get('/:id/*?', function (req, res) {
-    console.log(req.params.id);
-    console.log(req.originalUrl);
-    var data = fs.readFileSync(__dirname + '/dump' + req.originalUrl, 'utf8');
+    var path = __dirname + "/dump" + req.originalUrl.split("?")[0];
+    //HACK: we need to handle files that are not html
+    var data = fs.readFileSync(path, 'utf8');
     data += "<script src='/js/detect.js'></script>";
     res.send(data);
 });
