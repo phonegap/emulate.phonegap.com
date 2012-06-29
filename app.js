@@ -22,6 +22,7 @@ app.get('/:id/*?', function (req, res) {
     res.send(data);
 });
 
-app.listen(3000, function(){
+var port = process.env.PORT || 3000;
+app.listen(port, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
