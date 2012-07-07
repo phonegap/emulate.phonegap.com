@@ -12,3 +12,13 @@ body {
 a {
   color: #00B7FF;
 }
+
+#address {
+    width:80%;
+    height: auto;
+    font-size: 2em;
+}
+
+#go {
+    font-size: 2em;
+}

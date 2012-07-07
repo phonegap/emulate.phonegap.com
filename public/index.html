@@ -1,23 +1,29 @@
 <html>
     <head>
     	<title>emulate.phonegap.com</title>
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/index.js"></script>
     </head>
     <body>
-        <div class="header">
-            <img src="/images/cordova_bot.png" alt="" />
+        <section class="header">
+            <img src="images/cordova_bot.png" alt="" />
             +
-            <img src="/images/ripple.png" alt="" />
+            <img src="images/ripple.png" alt="" />
             =
-            <img src="/images/FUCK-YEAH.jpg" alt="" />
-        </div>
+            <img src="images/FUCK-YEAH.jpg" alt="" />
+        </section>
 
-        <div>
-            This is a quick prototype of some thoughts on emulate.phonegap.com
-        </div>
+        <section id="navigate" style="display: none">
+        	<input id="address" type="text" />
+            <button id="go">GO</button>
+        </section>
 
-        <div>
-            <a href="/guid_1234/index.html?enableripple=true">Link to sample hosted app</a>
-        </div>
+        <section id="browser-warning" style="display: none">
+            OMFG, you needz to be on chrome
+        </section>
+
+        <section id="ripple-warning" style="display: none">
+            OMFG, you needz the ripples
+        </section>
     </body>
 </html>

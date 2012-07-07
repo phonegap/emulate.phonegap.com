@@ -14,14 +14,6 @@ app.get('/', function (req, res) {
     res.sendfile(__dirname + '/public/index.html');
 });
 
-app.get('/:id/*?', function (req, res) {
-    var path = __dirname + "/dump" + req.originalUrl.split("?")[0];
-    //HACK: we need to handle files that are not html
-    var data = fs.readFileSync(path, 'utf8');
-    data += "<script src='/js/detect.js'></script>";
-    res.send(data);
-});
-
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
