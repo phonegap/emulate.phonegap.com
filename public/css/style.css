@@ -1,24 +1,143 @@
+/*
+ * Global Elements
+ */
+
 body {
-  padding: 50px;
-  font: 30px "Lucida Grande", Helvetica, Arial, sans-serif;
-  text-align: center;
+    color:#333333;
+    background:#E5E5E4;
+    font-family:"Courier New", Courier, sans-serif;
+    font-size:18px;
+    margin:0px;
+    padding:0px;
 }
 
-.header {
-    font-size: 2em;
-    margin: 0 auto;
+input {
+    color:#898989;
+    font: 18px "Courier New", Courier, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+a,
+a:visited {
+    color:#444444;
 }
+a:hover {
+    color:#000000;
+}
+
+/*
+ * Layout
+ */
+
+.box {
+    background-color:#CACACA;
+    border-radius:5px;
+    margin:50px auto;
+    padding:20px;
+    width:700px;
+}
+
+.light-box {
+    background-color:rgba(255, 255, 255, 0.4);
+}
+
+/*
+ * #header
+ */
+
+#header h1 {
+    background:rgba(0, 0, 0, 0.1);
+    border-radius:0px 0px 5px 5px;
+    display:none;
+    font-size:16px;
+    margin:0px auto;
+    padding:2px;
+    text-align:center;
+    width:12em;
+}
+
+#header .logo {
+    background:url(../img/ripplebot-text.png) center no-repeat;
+    height:216px;
+    margin:50px 0px;
+    padding:0px;
+}
+
+/*
+ * #loading
+ */
+
+#loading {
+    background:url(../img/loader.gif) center no-repeat;
+    height:32px;
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+}
+
+/*
+ * #search
+ */
 
 #address {
-    width:80%;
-    height: auto;
-    font-size: 2em;
+    background-color:rgba(255, 255, 255, 0.9);
+    border:none;
+    border-radius:5px;
+    font-size:100%;
+    padding:10px;
+    width:680px;
 }
 
-#go {
-    font-size: 2em;
+#address::before {
+    color:#898989;
+    content:'> ';
+    float:left;
+    margin-right:0.3em;
+}
+
+/*
+ * Docs
+ */
+
+.docs * {
+    color:#000000;
+    font-size:14px;
+    font-weight:100;
+    margin:0px;
+    padding:0px;
+}
+
+.docs h1 {
+    font-size:24px;
+    border-bottom:1px solid rgba(0, 0, 0, 0.3);
+    margin-bottom:20px;
+}
+
+.docs h2 {
+    font-size:18px;
+    margin:20px 0px;
+}
+
+.docs h3 {
+    font-size:14px;
+    margin:20px 0px;
+}
+
+.docs ul {
+    border-left:2px solid rgba(0, 0, 0, 0.1);
+    margin:0px;
+    padding:0px 0px 0px 10px;
+}
+
+.docs ul li {
+    margin:0px;
+    list-style:none;
+    padding:2px;
+}
+
+.docs p {
+    border-left:2px solid rgba(0, 0, 0, 0.1);
+    margin:10px 0px;
+    padding:0px 0px 0px 10px;
 }

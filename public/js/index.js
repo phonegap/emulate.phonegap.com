@@ -4,7 +4,7 @@ var app = {
         this.run();
     },
     bind: function() {
-        document.getElementById("go").addEventListener("click", function () {
+        document.getElementById("address").addEventListener("submit", function () {
             var address = document.getElementById("address");
             netherworld.goto(address.value);
         });
@@ -45,7 +45,7 @@ var app = {
             this.goto(uri);
         }
         else {
-            this.show("navigate");
+            this.show("search");
         }
     },
     goto: function (uri) {

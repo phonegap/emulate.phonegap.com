@@ -7,20 +7,73 @@
         <script type="text/javascript" src="js/index.js"></script>
     </head>
     <body>
-        <section id="loading">
-            <p>Loading...</p>
-        </section>
-        <section class="header">
-            <img src="img/cordova_bot.png" alt="" />
-            +
-            <img src="img/ripple.png" alt="" />
-            =
-            <img src="img/FUCK-YEAH.jpg" alt="" />
+        <section id="header">
+            <h1>Ripple Emulator</h1>
+            <div class="logo"></div>
         </section>
 
-        <section id="navigate" style="display: none">
-        	<input id="address" type="text" />
-            <button id="go">GO</button>
+        <section id="loading"></section>
+
+        <section id="search" class="box" style="display: none;">
+            <input id="address" type="text" placeholder="http://google.com or http://localhost:3000" />
+        </section>
+
+        <section class="docs box light-box">
+            <h1>Getting Started</h1>
+            <h2>Emulate PhoneGap</h2>
+            <ul>
+                <li><a href="#">http://google.com</a></li>
+                <li><a href="#">http://localhost:3000</a></li>
+            </ul>
+            <h2>Emulate a Specific Platform</h2>
+            <ul>
+                <li><a href="#">http://google.com?platform=phonegap</a></li>
+                <li><a href="#">http://google.com?platform=cordova</a></li>
+            </ul>
+            <h2>Emulate a Specific Platform Version</h2>
+            <ul>
+                <li><a href="#">http://google.com?platform=phonegap-1.0.0</a></li>
+                <li><a href="#">http://google.com?platform=cordova-1.0.0</a></li>
+            </ul>
+        </section>
+
+        <section id="api" class="docs box light-box">
+            <h1>API</h1>
+            <h2>Overview</h2>
+            <p>
+                The PhoneGap emulator can be invoked with a web request.
+                The request options are provided as query string parameters and
+                the response will check for all dependencies before opening
+                the Ripple emulator.
+            </p>
+            <h2>Request</h2>
+            <ul>
+                <li>http://emulate.phonegap.com?url=&lt;url&gt;&amp;platform=&lt;platform&gt;</li>
+            </ul>
+            <h2>Parameters</h2>
+            <h3>URL</h3>
+            <ul>
+                <li>The <code>url</code> is the address of your local or public web app.</li>
+                <li>The <code>url</code> is a required parameter.</li>
+                <li><h3>Examples:</h3></li>
+                <li><a href="#">http://emulate.phonegap.com?url=google.com</a></li>
+                <li><a href="#">http://emulate.phonegap.com?url=http://google.com</a></li>
+                <li><a href="#">http://emulate.phonegap.com?url=http://google.com/images</a></li>
+            </ul>
+            <h3>Platform</h3>
+            <ul>
+                <li>The <code>platform</code> is the environment to emulate.</li>
+                <li>The <code>platform</code> is an optional parameter.</li>
+                <li>The format is <code>platform=&lt;name&gt;-&lt;version&gt;</code>.</li>
+                <li>The <code>&lt;name&gt;</code> can be <code>phonegap</code> or <code>cordova</code>.</li>
+                <li>The <code>&lt;version&gt;</code> is optional, using latest when omitted.</li>
+                <li><h3>Examples:</h3></li>
+                <li><a href="#">http://emulate.phonegap.com?url=google.com&platform=cordova</a></li>
+                <li><a href="#">http://emulate.phonegap.com?url=google.com&platform=cordova-1.6.0</a></li>
+                <li><a href="#">http://emulate.phonegap.com?url=google.com&platform=phonegap</a></li>
+                <li><a href="#">http://emulate.phonegap.com?url=google.com&platform=phonegap-1.0.0</a></li>
+            </ul>
+            <p></p>
         </section>
 
         <section id="browser-warning" style="display: none">
