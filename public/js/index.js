@@ -15,14 +15,6 @@ var app = {
         this.loadApp();
         this.showLoading(false);
     },
-    showWarnings: function() {
-        if (!this.isBrowserSupported()) {
-            this.show('browser-warning');
-        }
-        else if (!this.hasRipplez()) {
-            this.show('ripple-warning');
-        }
-    },
     hasDependencies: function() {
         return this.isBrowserSupported() && this.hasRipplez();
     },
@@ -80,6 +72,14 @@ var app = {
         }
         else {
             this.hide('loading');
+        }
+    },
+    showWarnings: function() {
+        if (!this.isBrowserSupported()) {
+            this.show('browser-warning');
+        }
+        else if (!this.hasRipplez()) {
+            this.show('ripple-warning');
         }
     }
 };
