@@ -57,6 +57,25 @@ describe('app', function() {
         });
     });
 
+    describe('showLoading', function() {
+        beforeEach(function() {
+            spyOn(app, 'show');
+            spyOn(app, 'hide');
+        });
+
+        it('should show loading state', function() {
+            app.showLoading(true);
+            expect(app.show).toHaveBeenCalledWith('loading');
+            expect(app.hide).not.toHaveBeenCalled();
+        });
+
+        it('should not show loading state', function() {
+            app.showLoading(false);
+            expect(app.show).not.toHaveBeenCalled();
+            expect(app.hide).toHaveBeenCalledWith('loading');
+        });
+    });
+
     describe('showWarnings', function() {
         it('should show no warnings when dependencies exist', function() {
             spyOn(app, 'hasRipplez').andReturn(true);
