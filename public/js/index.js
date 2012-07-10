@@ -31,7 +31,7 @@ var app = {
     },
     load: function() {
         if (this.hasWarnings()) {
-            this.showWarnings();
+            this.loadWarnings();
         }
         else if (this.hasApiRequest()) {
             this.loadApiRequest();
@@ -99,7 +99,7 @@ var app = {
             this.hide('loading');
         }
     },
-    showWarnings: function() {
+    loadWarnings: function() {
         if (!this.isBrowserSupported()) {
             this.show('browser-warning');
         }

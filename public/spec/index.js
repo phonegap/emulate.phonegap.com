@@ -79,9 +79,9 @@ describe('app', function() {
     describe('load', function() {
         it('should load a warning when a warning exists', function() {
             spyOn(app, 'hasWarnings').andReturn(true);
-            spyOn(app, 'showWarnings');
+            spyOn(app, 'loadWarnings');
             app.load();
-            expect(app.showWarnings).toHaveBeenCalled();
+            expect(app.loadWarnings).toHaveBeenCalled();
         });
 
         it('should load API on API request', function() {
@@ -113,12 +113,12 @@ describe('app', function() {
         });
     });
 
-    describe('showWarnings', function() {
+    describe('loadWarnings', function() {
         it('should show no warnings when dependencies exist', function() {
             spyOn(app, 'hasRipplez').andReturn(true);
             spyOn(app, 'isBrowserSupported').andReturn(true);
             spyOn(app, 'show');
-            app.showWarnings();
+            app.loadWarnings();
             expect(app.show).not.toHaveBeenCalled();
         });
 
@@ -126,7 +126,7 @@ describe('app', function() {
             spyOn(app, 'hasRipplez').andReturn(true);
             spyOn(app, 'isBrowserSupported').andReturn(false);
             spyOn(app, 'show');
-            app.showWarnings();
+            app.loadWarnings();
             expect(app.show).toHaveBeenCalledWith('browser-warning');
         });
 
@@ -134,7 +134,7 @@ describe('app', function() {
             spyOn(app, 'hasRipplez').andReturn(false);
             spyOn(app, 'isBrowserSupported').andReturn(true);
             spyOn(app, 'show');
-            app.showWarnings();
+            app.loadWarnings();
             expect(app.show).toHaveBeenCalledWith('ripple-warning');
         });
     });
