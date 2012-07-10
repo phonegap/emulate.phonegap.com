@@ -57,6 +57,50 @@ describe('app', function() {
         });
     });
 
+    describe('hasWarnings', function() {
+        it('should be false when there are no warnings', function() {
+            spyOn(app, 'hasDependencies').andReturn(true);
+            expect(app.hasWarnings()).toEqual(false);
+        });
+
+        it('should be true when there are warnings', function() {
+            spyOn(app, 'hasDependencies').andReturn(false);
+            expect(app.hasWarnings()).toEqual(true);
+        });
+    });
+
+    describe('loadApp', function() {
+        it('should not load when missing dependencies', function() {
+            spyOn(app, 'hasDependencies').andReturn(false);
+            expect(app.loadApp()).toEqual(false);
+        });
+    });
+
+    describe('load', function() {
+        it('should load a warning when a warning exists', function() {
+            spyOn(app, 'hasWarnings').andReturn(true);
+            spyOn(app, 'showWarnings');
+            app.load();
+            expect(app.showWarnings).toHaveBeenCalled();
+        });
+
+        it('should load API on API request', function() {
+            spyOn(app, 'hasWarnings').andReturn(false);
+            spyOn(app, 'hasApiRequest').andReturn(true);
+            spyOn(app, 'loadApiRequest');
+            app.load();
+            expect(app.loadApiRequest).toHaveBeenCalled();
+        });
+
+        it('should load search page on page request', function() {
+            spyOn(app, 'hasWarnings').andReturn(false);
+            spyOn(app, 'hasApiRequest').andReturn(false);
+            spyOn(app, 'loadPageRequest');
+            app.load();
+            expect(app.loadPageRequest).toHaveBeenCalled();
+        });
+    });
+
     describe('showLoading', function() {
         beforeEach(function() {
             spyOn(app, 'show');
@@ -102,10 +146,32 @@ describe('app', function() {
         });
     });
 
-    describe('loadApp', function() {
-        it('should not load when missing dependencies', function() {
-            spyOn(app, 'hasDependencies').andReturn(false);
-            expect(app.loadApp()).toEqual(false);
+    describe('hasApiRequest', function() {
+        it('should be false when qs is empty', function() {
+            spyOn(app, 'queryString').andReturn('');
+            expect(app.hasApiRequest()).toBe(false);
+        });
+
+        it('should be false when the url qs is missing', function() {
+            spyOn(app, 'queryString').andReturn('?platform=cordova&foo=bar');
+            expect(app.hasApiRequest()).toBe(false);
+        });
+
+        it('should be true when the url qs exists', function() {
+            spyOn(app, 'queryString').andReturn('?url=google.com');
+            expect(app.hasApiRequest()).toBe(true);
+        });
+    });
+
+    describe('loadApiRequest', function() {
+        it('is pending...', function() {
+            expect(false).toBe(true);
+        });
+    });
+
+    describe('loadPageRequest', function() {
+        it('is pending...', function() {
+            expect(false).toBe(true);
         });
     });
 });

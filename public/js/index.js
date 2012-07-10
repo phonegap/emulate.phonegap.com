@@ -11,12 +11,14 @@ var app = {
     },
     run: function() {
         this.showLoading(true);
-        this.showWarnings();
-        this.loadApp();
+        this.load();
         this.showLoading(false);
     },
     hasDependencies: function() {
         return this.isBrowserSupported() && this.hasRipplez();
+    },
+    hasWarnings: function() {
+        return !this.hasDependencies();
     },
     isBrowserSupported: function() {
         return !!window.chrome;
@@ -26,6 +28,27 @@ var app = {
         // because Ripple has two IDs (hosted and Chrome Store)
         // and local dev installations have unique IDs.
         return !!document.getElementById("tinyhippos-injected");
+    },
+    load: function() {
+        if (this.hasWarnings()) {
+            this.showWarnings();
+        }
+        else if (this.hasApiRequest()) {
+            this.loadApiRequest();
+        }
+        else {
+            this.loadPageRequest();
+        }
+    },
+    hasApiRequest: function() {
+        return !!this.queryString().match(/url=/);
+    },
+    loadApiRequest: function() {
+    },
+    loadPageRequest: function() {
+    },
+    queryString: function() {
+        return window.location.search;
     },
     loadApp: function() {
         if (!this.hasDependencies()) {
