@@ -163,8 +163,10 @@ describe('app', function() {
     });
 
     describe('loadPageRequest', function() {
-        it('is pending...', function() {
-            expect(false).toBe(true);
+        it('should show the page content', function() {
+            spyOn(app, 'show');
+            app.loadPageRequest();
+            expect(app.show).toHaveBeenCalledWith('content');
         });
     });
 });

@@ -46,6 +46,7 @@ var app = {
     loadApiRequest: function() {
     },
     loadPageRequest: function() {
+        this.show('content');
     },
     queryString: function() {
         return window.location.search;
