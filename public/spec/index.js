@@ -218,7 +218,9 @@ describe('app', function() {
 
         describe('with args', function() {
             it('should goto requested page', function() {
-                expect(false).toBe(true);
+                spyOn(app, 'goto');
+                app.loadPageRequest('http://google.com?q=s');
+                expect(app.goto).toHaveBeenCalledWith('http://google.com?q=s');
             });
         });
     });

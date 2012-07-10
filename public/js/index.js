@@ -65,8 +65,13 @@ var app = {
 
         this.goto(url);
     },
-    loadPageRequest: function() {
-        this.show('content');
+    loadPageRequest: function(uri) {
+        if (uri) {
+            this.goto(uri);
+        }
+        else {
+            this.show('content');
+        }
     },
     goto: function (uri) {
         if (!uri.match(/enableripple=/)) {
