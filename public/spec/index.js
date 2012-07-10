@@ -10,4 +10,22 @@ describe('app', function() {
             expect(app.hasRipplez()).toBe(false);
         });
     });
+
+    describe('isBrowserSupported', function() {
+        var _chrome = window.chrome;
+
+        afterEach(function() {
+            window.chrome = _chrome;
+        });
+
+        it('should be true when using the Chrome browser', function() {
+            window.chrome = {};
+            expect(app.isBrowserSupported()).toBe(true);
+        });
+
+        it('should be false when not using the Chrome browser', function() {
+            window.chrome = undefined;
+            expect(app.isBrowserSupported()).toBe(false);
+        });
+    });
 });

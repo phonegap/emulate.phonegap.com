@@ -16,7 +16,7 @@ var app = {
         this.showLoading(false);
     },
     checkDependencies: function() {
-        if (!this.isSupportedBrowser()) {
+        if (!this.isBrowserSupported()) {
             this.show('browser-warning');
         }
         else if (!this.hasRipplez()) {
@@ -26,8 +26,8 @@ var app = {
     hasDependencies: function() {
         return !this.visible('browser-warning') && !this.visible('ripple-warning');
     },
-    isSupportedBrowser: function() {
-        return window.chrome;
+    isBrowserSupported: function() {
+        return !!window.chrome;
     },
     hasRipplez: function () {
         // we do not use window.chrome.isInstalled(id)
