@@ -1,4 +1,29 @@
 describe('app', function() {
+    describe('load', function() {
+        it('should load a warning when a warning exists', function() {
+            spyOn(app, 'hasWarnings').andReturn(true);
+            spyOn(app, 'loadWarnings');
+            app.load();
+            expect(app.loadWarnings).toHaveBeenCalled();
+        });
+
+        it('should load API on API request', function() {
+            spyOn(app, 'hasWarnings').andReturn(false);
+            spyOn(app, 'hasApiRequest').andReturn(true);
+            spyOn(app, 'loadApiRequest');
+            app.load();
+            expect(app.loadApiRequest).toHaveBeenCalled();
+        });
+
+        it('should load search page on page request', function() {
+            spyOn(app, 'hasWarnings').andReturn(false);
+            spyOn(app, 'hasApiRequest').andReturn(false);
+            spyOn(app, 'loadPageRequest');
+            app.load();
+            expect(app.loadPageRequest).toHaveBeenCalled();
+        });
+    });
+
     describe('hasRipplez', function() {
         it('should be true when Ripple is installed', function() {
             helper.id('stage').innerHTML = '<script id="tinyhippos-injected"></script>';
@@ -73,31 +98,6 @@ describe('app', function() {
             app.showLoading(false);
             expect(app.show).not.toHaveBeenCalled();
             expect(app.hide).toHaveBeenCalledWith('loading');
-        });
-    });
-
-    describe('load', function() {
-        it('should load a warning when a warning exists', function() {
-            spyOn(app, 'hasWarnings').andReturn(true);
-            spyOn(app, 'loadWarnings');
-            app.load();
-            expect(app.loadWarnings).toHaveBeenCalled();
-        });
-
-        it('should load API on API request', function() {
-            spyOn(app, 'hasWarnings').andReturn(false);
-            spyOn(app, 'hasApiRequest').andReturn(true);
-            spyOn(app, 'loadApiRequest');
-            app.load();
-            expect(app.loadApiRequest).toHaveBeenCalled();
-        });
-
-        it('should load search page on page request', function() {
-            spyOn(app, 'hasWarnings').andReturn(false);
-            spyOn(app, 'hasApiRequest').andReturn(false);
-            spyOn(app, 'loadPageRequest');
-            app.load();
-            expect(app.loadPageRequest).toHaveBeenCalled();
         });
     });
 
