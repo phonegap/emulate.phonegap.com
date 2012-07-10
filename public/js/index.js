@@ -66,9 +66,6 @@ var app = {
     loadPageRequest: function() {
         this.show('content');
     },
-    queryString: function() {
-        return window.location.search;
-    },
     loadApp: function() {
         if (!this.hasDependencies()) {
             return false;
@@ -107,6 +104,9 @@ var app = {
     },
     visible: function(id) {
         return (document.getElementById(id).style.display === '');
+    },
+    queryString: function() {
+        return window.location.search;
     },
     showLoading: function(loading) {
         if (loading) {
