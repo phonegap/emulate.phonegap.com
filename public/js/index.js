@@ -26,7 +26,7 @@ var app = {
         }
     },
     hasWarnings: function() {
-        return !this.hasDependencies();
+        return !(this.isBrowserSupported() && this.hasRipplez());
     },
     loadWarnings: function() {
         if (!this.isBrowserSupported()) {
@@ -35,9 +35,6 @@ var app = {
         else if (!this.hasRipplez()) {
             this.show('ripple-warning');
         }
-    },
-    hasDependencies: function() {
-        return this.isBrowserSupported() && this.hasRipplez();
     },
     isBrowserSupported: function() {
         return !!window.chrome;

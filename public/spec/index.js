@@ -26,12 +26,26 @@ describe('app', function() {
 
     describe('hasWarnings', function() {
         it('should be false when there are no warnings', function() {
-            spyOn(app, 'hasDependencies').andReturn(true);
+            spyOn(app, 'hasRipplez').andReturn(true);
+            spyOn(app, 'isBrowserSupported').andReturn(true);
             expect(app.hasWarnings()).toEqual(false);
         });
 
-        it('should be true when there are warnings', function() {
-            spyOn(app, 'hasDependencies').andReturn(false);
+        it('should be true when missing Ripple', function() {
+            spyOn(app, 'hasRipplez').andReturn(false);
+            spyOn(app, 'isBrowserSupported').andReturn(true);
+            expect(app.hasWarnings()).toEqual(true);
+        });
+
+        it('should be true when missing Chrome', function() {
+            spyOn(app, 'hasRipplez').andReturn(true);
+            spyOn(app, 'isBrowserSupported').andReturn(false);
+            expect(app.hasWarnings()).toEqual(true);
+        });
+
+        it('should be true when missing Ripple and Chrome', function() {
+            spyOn(app, 'hasRipplez').andReturn(false);
+            spyOn(app, 'isBrowserSupported').andReturn(false);
             expect(app.hasWarnings()).toEqual(true);
         });
     });
@@ -91,32 +105,6 @@ describe('app', function() {
         it('should be false when not using the Chrome browser', function() {
             window.chrome = undefined;
             expect(app.isBrowserSupported()).toBe(false);
-        });
-    });
-
-    describe('hasDependencies', function() {
-        it('should be true when Chrome and Ripple exist', function() {
-            spyOn(app, 'hasRipplez').andReturn(true);
-            spyOn(app, 'isBrowserSupported').andReturn(true);
-            expect(app.hasDependencies()).toBe(true);
-        });
-
-        it('should be false when Chrome and Ripple are missing', function() {
-            spyOn(app, 'hasRipplez').andReturn(false);
-            spyOn(app, 'isBrowserSupported').andReturn(false);
-            expect(app.hasDependencies()).toBe(false);
-        });
-
-        it('should be false when Chrome is missing', function() {
-            spyOn(app, 'hasRipplez').andReturn(true);
-            spyOn(app, 'isBrowserSupported').andReturn(false);
-            expect(app.hasDependencies()).toBe(false);
-        });
-
-        it('should be false when Ripple is missing', function() {
-            spyOn(app, 'hasRipplez').andReturn(false);
-            spyOn(app, 'isBrowserSupported').andReturn(true);
-            expect(app.hasDependencies()).toBe(false);
         });
     });
 
