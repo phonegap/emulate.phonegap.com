@@ -101,4 +101,11 @@ describe('app', function() {
             expect(app.show).toHaveBeenCalledWith('ripple-warning');
         });
     });
+
+    describe('loadApp', function() {
+        it('should not load when missing dependencies', function() {
+            spyOn(app, 'hasDependencies').andReturn(false);
+            expect(app.loadApp()).toEqual(false);
+        });
+    });
 });

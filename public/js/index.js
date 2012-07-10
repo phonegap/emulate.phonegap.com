@@ -29,7 +29,7 @@ var app = {
     },
     loadApp: function() {
         if (!this.hasDependencies()) {
-            return;
+            return false;
         }
 
         if (window.location.search) {
@@ -39,6 +39,8 @@ var app = {
         else {
             this.show("search");
         }
+
+        return true;
     },
     goto: function (uri) {
         //TODO: Test if window.chrome exists on chromium
