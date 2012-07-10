@@ -24,6 +24,44 @@ describe('app', function() {
         });
     });
 
+    describe('hasWarnings', function() {
+        it('should be false when there are no warnings', function() {
+            spyOn(app, 'hasDependencies').andReturn(true);
+            expect(app.hasWarnings()).toEqual(false);
+        });
+
+        it('should be true when there are warnings', function() {
+            spyOn(app, 'hasDependencies').andReturn(false);
+            expect(app.hasWarnings()).toEqual(true);
+        });
+    });
+
+    describe('loadWarnings', function() {
+        it('should show no warnings when dependencies exist', function() {
+            spyOn(app, 'hasRipplez').andReturn(true);
+            spyOn(app, 'isBrowserSupported').andReturn(true);
+            spyOn(app, 'show');
+            app.loadWarnings();
+            expect(app.show).not.toHaveBeenCalled();
+        });
+
+        it('should show browser warning', function() {
+            spyOn(app, 'hasRipplez').andReturn(true);
+            spyOn(app, 'isBrowserSupported').andReturn(false);
+            spyOn(app, 'show');
+            app.loadWarnings();
+            expect(app.show).toHaveBeenCalledWith('browser-warning');
+        });
+
+        it('should show Ripple warning', function() {
+            spyOn(app, 'hasRipplez').andReturn(false);
+            spyOn(app, 'isBrowserSupported').andReturn(true);
+            spyOn(app, 'show');
+            app.loadWarnings();
+            expect(app.show).toHaveBeenCalledWith('ripple-warning');
+        });
+    });
+
     describe('hasRipplez', function() {
         it('should be true when Ripple is installed', function() {
             helper.id('stage').innerHTML = '<script id="tinyhippos-injected"></script>';
@@ -98,44 +136,6 @@ describe('app', function() {
             app.showLoading(false);
             expect(app.show).not.toHaveBeenCalled();
             expect(app.hide).toHaveBeenCalledWith('loading');
-        });
-    });
-
-    describe('hasWarnings', function() {
-        it('should be false when there are no warnings', function() {
-            spyOn(app, 'hasDependencies').andReturn(true);
-            expect(app.hasWarnings()).toEqual(false);
-        });
-
-        it('should be true when there are warnings', function() {
-            spyOn(app, 'hasDependencies').andReturn(false);
-            expect(app.hasWarnings()).toEqual(true);
-        });
-    });
-
-    describe('loadWarnings', function() {
-        it('should show no warnings when dependencies exist', function() {
-            spyOn(app, 'hasRipplez').andReturn(true);
-            spyOn(app, 'isBrowserSupported').andReturn(true);
-            spyOn(app, 'show');
-            app.loadWarnings();
-            expect(app.show).not.toHaveBeenCalled();
-        });
-
-        it('should show browser warning', function() {
-            spyOn(app, 'hasRipplez').andReturn(true);
-            spyOn(app, 'isBrowserSupported').andReturn(false);
-            spyOn(app, 'show');
-            app.loadWarnings();
-            expect(app.show).toHaveBeenCalledWith('browser-warning');
-        });
-
-        it('should show Ripple warning', function() {
-            spyOn(app, 'hasRipplez').andReturn(false);
-            spyOn(app, 'isBrowserSupported').andReturn(true);
-            spyOn(app, 'show');
-            app.loadWarnings();
-            expect(app.show).toHaveBeenCalledWith('ripple-warning');
         });
     });
 

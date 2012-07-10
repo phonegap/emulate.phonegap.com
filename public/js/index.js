@@ -25,11 +25,19 @@ var app = {
             this.loadPageRequest();
         }
     },
-    hasDependencies: function() {
-        return this.isBrowserSupported() && this.hasRipplez();
-    },
     hasWarnings: function() {
         return !this.hasDependencies();
+    },
+    loadWarnings: function() {
+        if (!this.isBrowserSupported()) {
+            this.show('browser-warning');
+        }
+        else if (!this.hasRipplez()) {
+            this.show('ripple-warning');
+        }
+    },
+    hasDependencies: function() {
+        return this.isBrowserSupported() && this.hasRipplez();
     },
     isBrowserSupported: function() {
         return !!window.chrome;
@@ -109,14 +117,6 @@ var app = {
         }
         else {
             this.hide('loading');
-        }
-    },
-    loadWarnings: function() {
-        if (!this.isBrowserSupported()) {
-            this.show('browser-warning');
-        }
-        else if (!this.hasRipplez()) {
-            this.show('ripple-warning');
         }
     }
 };
