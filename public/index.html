@@ -22,7 +22,9 @@
         <article id="content" style="display:none;">
 
             <section id="search" class="box">
-                <input id="address" type="text" placeholder="http://google.com or http://localhost:3000" />
+                <form id="page-request-form" onsubmit="return false;">
+                    <input id="page-request-address" type="url" placeholder="http://google.com or http://localhost:3000" />
+                </form>
             </section>
 
             <section class="docs box light-box">

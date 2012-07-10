@@ -80,7 +80,7 @@ a:hover {
  * #search
  */
 
-#address {
+#page-request-address {
     background-color:rgba(255, 255, 255, 0.9);
     border:none;
     border-radius:5px;
@@ -89,7 +89,7 @@ a:hover {
     width:680px;
 }
 
-#address::before {
+#page-request-address::before {
     color:#898989;
     content:'> ';
     float:left;

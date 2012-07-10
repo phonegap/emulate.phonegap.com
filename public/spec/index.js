@@ -1,4 +1,40 @@
 describe('app', function() {
+    describe('bind', function() {
+        describe('address', function() {
+            beforeEach(function() {
+                helper.createPageRequestForm('stage');
+                app.bind();
+            });
+
+            it('should call loadPageRequest on submit', function() {
+                runs(function() {
+                    spyOn(app, 'loadPageRequest');
+                    helper.submit('page-request-form');
+                });
+                waitsFor(function() {
+                    return (app.loadPageRequest.calls.length > 0);
+                }, 'loadPageRequest should be called once', 500);
+                runs(function() {
+                    expect(app.loadPageRequest).toHaveBeenCalled();
+                });
+            });
+
+            it('should pass the page address to load', function() {
+                runs(function() {
+                    spyOn(app, 'loadPageRequest');
+                    helper.id('page-request-address').value = 'http://google.com?q=s';
+                    helper.submit('page-request-form');
+                });
+                waitsFor(function() {
+                    return (app.loadPageRequest.calls.length > 0);
+                }, 'loadPageRequest should be called once', 500);
+                runs(function() {
+                    expect(app.loadPageRequest).toHaveBeenCalledWith('http://google.com?q=s');
+                });
+            });
+        });
+    });
+
     describe('load', function() {
         it('should load a warning when a warning exists', function() {
             spyOn(app, 'hasWarnings').andReturn(true);
@@ -172,10 +208,18 @@ describe('app', function() {
     });
 
     describe('loadPageRequest', function() {
-        it('should show the page content', function() {
-            spyOn(app, 'show');
-            app.loadPageRequest();
-            expect(app.show).toHaveBeenCalledWith('content');
+        describe('with no args', function() {
+            it('should show the page content', function() {
+                spyOn(app, 'show');
+                app.loadPageRequest();
+                expect(app.show).toHaveBeenCalledWith('content');
+            });
+        });
+
+        describe('with args', function() {
+            it('should goto requested page', function() {
+                expect(false).toBe(true);
+            });
         });
     });
 

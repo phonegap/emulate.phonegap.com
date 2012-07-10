@@ -4,9 +4,11 @@ var app = {
         this.run();
     },
     bind: function() {
-        document.getElementById("address").addEventListener("submit", function () {
-            var address = document.getElementById("address");
-            netherworld.goto(address.value);
+        var self = this;
+        document.getElementById("page-request-form").addEventListener('submit', function(e) {
+            var address = document.getElementById("page-request-address");
+            self.loadPageRequest(address.value);
+            return false;
         });
     },
     run: function() {
