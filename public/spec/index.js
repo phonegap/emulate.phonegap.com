@@ -76,20 +76,6 @@ describe('app', function() {
         });
     });
 
-    describe('hasRipplez', function() {
-        it('should be true when Ripple is installed', function() {
-            helper.id('stage').innerHTML = '<script id="tinyhippos-injected"></script>';
-            expect(app.hasRipplez()).toBe(true);
-        });
-
-        it('should be false when Ripple is missing', function() {
-            var el = helper.id('tinyhippos-injected');
-            helper.remove('tinyhippos-injected');
-            expect(app.hasRipplez()).toBe(false);
-            if (el) document.body.appendChild(el);
-        });
-    });
-
     describe('isBrowserSupported', function() {
         var _chrome = window.chrome;
 
@@ -105,6 +91,20 @@ describe('app', function() {
         it('should be false when not using the Chrome browser', function() {
             window.chrome = undefined;
             expect(app.isBrowserSupported()).toBe(false);
+        });
+    });
+
+    describe('hasRipplez', function() {
+        it('should be true when Ripple is installed', function() {
+            helper.id('stage').innerHTML = '<script id="tinyhippos-injected"></script>';
+            expect(app.hasRipplez()).toBe(true);
+        });
+
+        it('should be false when Ripple is missing', function() {
+            var el = helper.id('tinyhippos-injected');
+            helper.remove('tinyhippos-injected');
+            expect(app.hasRipplez()).toBe(false);
+            if (el) document.body.appendChild(el);
         });
     });
 
