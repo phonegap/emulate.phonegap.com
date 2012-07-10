@@ -11,11 +11,11 @@ var app = {
     },
     run: function() {
         this.showLoading(true);
-        this.checkDependencies();
+        this.showWarnings();
         this.loadApp();
         this.showLoading(false);
     },
-    checkDependencies: function() {
+    showWarnings: function() {
         if (!this.isBrowserSupported()) {
             this.show('browser-warning');
         }

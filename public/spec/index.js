@@ -6,8 +6,10 @@ describe('app', function() {
         });
 
         it('should be false when Ripple is missing', function() {
+            var el = helper.id('tinyhippos-injected');
             helper.remove('tinyhippos-injected');
             expect(app.hasRipplez()).toBe(false);
+            if (el) document.body.appendChild(el);
         });
     });
 
@@ -52,6 +54,32 @@ describe('app', function() {
             spyOn(app, 'hasRipplez').andReturn(false);
             spyOn(app, 'isBrowserSupported').andReturn(true);
             expect(app.hasDependencies()).toBe(false);
+        });
+    });
+
+    describe('showWarnings', function() {
+        it('should show no warnings when dependencies exist', function() {
+            spyOn(app, 'hasRipplez').andReturn(true);
+            spyOn(app, 'isBrowserSupported').andReturn(true);
+            spyOn(app, 'show');
+            app.showWarnings();
+            expect(app.show).not.toHaveBeenCalled();
+        });
+
+        it('should show browser warning', function() {
+            spyOn(app, 'hasRipplez').andReturn(true);
+            spyOn(app, 'isBrowserSupported').andReturn(false);
+            spyOn(app, 'show');
+            app.showWarnings();
+            expect(app.show).toHaveBeenCalledWith('browser-warning');
+        });
+
+        it('should show Ripple warning', function() {
+            spyOn(app, 'hasRipplez').andReturn(false);
+            spyOn(app, 'isBrowserSupported').andReturn(true);
+            spyOn(app, 'show');
+            app.showWarnings();
+            expect(app.show).toHaveBeenCalledWith('ripple-warning');
         });
     });
 });
