@@ -57,22 +57,22 @@ describe('app', function() {
         });
     });
 
-    describe('hasWarnings', function() {
-        it('should be false when there are no warnings', function() {
-            spyOn(app, 'hasDependencies').andReturn(true);
-            expect(app.hasWarnings()).toEqual(false);
+    describe('showLoading', function() {
+        beforeEach(function() {
+            spyOn(app, 'show');
+            spyOn(app, 'hide');
         });
 
-        it('should be true when there are warnings', function() {
-            spyOn(app, 'hasDependencies').andReturn(false);
-            expect(app.hasWarnings()).toEqual(true);
+        it('should show loading state', function() {
+            app.showLoading(true);
+            expect(app.show).toHaveBeenCalledWith('loading');
+            expect(app.hide).not.toHaveBeenCalled();
         });
-    });
 
-    describe('loadApp', function() {
-        it('should not load when missing dependencies', function() {
-            spyOn(app, 'hasDependencies').andReturn(false);
-            expect(app.loadApp()).toEqual(false);
+        it('should not show loading state', function() {
+            app.showLoading(false);
+            expect(app.show).not.toHaveBeenCalled();
+            expect(app.hide).toHaveBeenCalledWith('loading');
         });
     });
 
@@ -101,22 +101,15 @@ describe('app', function() {
         });
     });
 
-    describe('showLoading', function() {
-        beforeEach(function() {
-            spyOn(app, 'show');
-            spyOn(app, 'hide');
+    describe('hasWarnings', function() {
+        it('should be false when there are no warnings', function() {
+            spyOn(app, 'hasDependencies').andReturn(true);
+            expect(app.hasWarnings()).toEqual(false);
         });
 
-        it('should show loading state', function() {
-            app.showLoading(true);
-            expect(app.show).toHaveBeenCalledWith('loading');
-            expect(app.hide).not.toHaveBeenCalled();
-        });
-
-        it('should not show loading state', function() {
-            app.showLoading(false);
-            expect(app.show).not.toHaveBeenCalled();
-            expect(app.hide).toHaveBeenCalledWith('loading');
+        it('should be true when there are warnings', function() {
+            spyOn(app, 'hasDependencies').andReturn(false);
+            expect(app.hasWarnings()).toEqual(true);
         });
     });
 
