@@ -79,7 +79,7 @@ var app = {
         this.redirect(uri);
     },
     redirect: function(uri) {
-        //window.location.href = uri;
+        window.location.href = uri;
     },
     show: function (id) {
         document.getElementById(id).setAttribute("style", "");
