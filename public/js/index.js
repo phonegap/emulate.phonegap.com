@@ -66,21 +66,6 @@ var app = {
     loadPageRequest: function() {
         this.show('content');
     },
-    loadApp: function() {
-        if (!this.hasDependencies()) {
-            return false;
-        }
-
-        if (window.location.search) {
-            var uri = decodeURI(window.location.search.split("=")[1]);
-            this.goto(uri);
-        }
-        else {
-            this.show("search");
-        }
-
-        return true;
-    },
     goto: function (uri) {
         if (!uri.match(/enableripple=/)) {
             uri += uri.match(/\?/) ? "&" : "?";
