@@ -80,21 +80,19 @@ var app = {
         return true;
     },
     goto: function (uri) {
-        //TODO: Test if window.chrome exists on chromium
-        if (window.chrome && netherworld.hasRipplez()) {
-            //TODO: ensure that enableripple=cordova
-            
-            if (!uri.match("enableripple")) {
-                uri += uri.match(/\?/) ? "&enableripple=cordova" : "?enableripple=cordova";
-            }
-
-            if (!uri.match("^http")) {
-                uri = "http://" + uri;
-            }
-            console.log(uri);
-
-            //window.location.href = uri;
+        if (!uri.match(/enableripple=/)) {
+            uri += uri.match(/\?/) ? "&" : "?";
+            uri += 'enableripple=cordova';
         }
+
+        if (!uri.match(/^http[s]?:\/\//)) {
+            uri = "http://" + uri;
+        }
+
+        this.redirect(uri);
+    },
+    redirect: function(uri) {
+        //window.location.href = uri;
     },
     show: function (id) {
         document.getElementById(id).setAttribute("style", "");
