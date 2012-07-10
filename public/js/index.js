@@ -24,7 +24,7 @@ var app = {
         }
     },
     hasDependencies: function() {
-        return !this.visible('browser-warning') && !this.visible('ripple-warning');
+        return this.isBrowserSupported() && this.hasRipplez();
     },
     isBrowserSupported: function() {
         return !!window.chrome;
