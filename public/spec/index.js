@@ -108,25 +108,6 @@ describe('app', function() {
         });
     });
 
-    describe('showLoading', function() {
-        beforeEach(function() {
-            spyOn(app, 'show');
-            spyOn(app, 'hide');
-        });
-
-        it('should show loading state', function() {
-            app.showLoading(true);
-            expect(app.show).toHaveBeenCalledWith('loading');
-            expect(app.hide).not.toHaveBeenCalled();
-        });
-
-        it('should not show loading state', function() {
-            app.showLoading(false);
-            expect(app.show).not.toHaveBeenCalled();
-            expect(app.hide).toHaveBeenCalledWith('loading');
-        });
-    });
-
     describe('hasApiRequest', function() {
         it('should be false when qs is empty', function() {
             spyOn(app, 'queryString').andReturn('');
@@ -239,6 +220,25 @@ describe('app', function() {
             spyOn(app, 'redirect');
             app.goto('http://google.com?enableripple=cordova');
             expect(app.redirect).toHaveBeenCalledWith('http://google.com?enableripple=cordova');
+        });
+    });
+
+    describe('showLoading', function() {
+        beforeEach(function() {
+            spyOn(app, 'show');
+            spyOn(app, 'hide');
+        });
+
+        it('should show loading state', function() {
+            app.showLoading(true);
+            expect(app.show).toHaveBeenCalledWith('loading');
+            expect(app.hide).not.toHaveBeenCalled();
+        });
+
+        it('should not show loading state', function() {
+            app.showLoading(false);
+            expect(app.show).not.toHaveBeenCalled();
+            expect(app.hide).toHaveBeenCalledWith('loading');
         });
     });
 });
