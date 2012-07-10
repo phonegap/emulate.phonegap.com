@@ -33,7 +33,7 @@ var app = {
         // we do not use window.chrome.isInstalled(id)
         // because Ripple has two IDs (hosted and Chrome Store)
         // and local dev installations have unique IDs.
-        return document.getElementById("tinyhippos-injected");
+        return !!document.getElementById("tinyhippos-injected");
     },
     loadApp: function() {
         if (!this.hasDependencies()) {
@@ -83,7 +83,3 @@ var app = {
         }
     }
 };
-
-window.addEventListener("load", function () {
-    app.initialize();
-});
