@@ -44,6 +44,19 @@ var app = {
         return !!this.queryString().match(/url=/);
     },
     loadApiRequest: function() {
+        var url = this.queryString().match(/url=([^&]*)/)[1];
+        url = decodeURIComponent(url);
+
+        var platform = this.queryString().match(/(platform=[^&]*)/);
+        if (platform) {
+            platform = platform[1].replace('platform=', 'enableripple=');
+
+            var delimiters = url.match(/[\?\&]+/g);
+            var delimiter = (delimiters) ? '&' : '?';
+            url = url + delimiter + platform;
+        }
+
+        this.goto(url);
     },
     loadPageRequest: function() {
         this.show('content');

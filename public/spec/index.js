@@ -157,8 +157,48 @@ describe('app', function() {
     });
 
     describe('loadApiRequest', function() {
-        it('is pending...', function() {
-            expect(false).toBe(true);
+        it('should goto "url" in qs', function() {
+            spyOn(app, 'goto');
+            spyOn(app, 'queryString').andReturn('?url=google.com');
+            app.loadApiRequest();
+            expect(app.goto).toHaveBeenCalledWith('google.com');
+        });
+
+        it('should goto "url" in qs and unescape any args', function() {
+            spyOn(app, 'goto');
+            spyOn(app, 'queryString').andReturn('?url=google.com%3Fq%3Dvalue');
+            app.loadApiRequest();
+            expect(app.goto).toHaveBeenCalledWith('google.com?q=value');
+        });
+
+        describe('platform parameter', function() {
+            it('should be renamed to "enableripple"', function() {
+                spyOn(app, 'goto');
+                spyOn(app, 'queryString').andReturn('?url=google.com&platform=cordova');
+                app.loadApiRequest();
+                expect(app.goto).toHaveBeenCalledWith('google.com?enableripple=cordova');
+            });
+
+            it('should be appended as "?enableripple" when no params exist', function() {
+                spyOn(app, 'goto');
+                spyOn(app, 'queryString').andReturn('?url=google.com&platform=cordova');
+                app.loadApiRequest();
+                expect(app.goto).toHaveBeenCalledWith('google.com?enableripple=cordova');
+            });
+
+            it('should be appended as "&enableripple" when params exist', function() {
+                spyOn(app, 'goto');
+                spyOn(app, 'queryString').andReturn('?url=google.com%3Fq%3Dvalue&platform=cordova');
+                app.loadApiRequest();
+                expect(app.goto).toHaveBeenCalledWith('google.com?q=value&enableripple=cordova');
+            });
+
+            it('should support the format platform=<name>-<version>', function() {
+                spyOn(app, 'goto');
+                spyOn(app, 'queryString').andReturn('?url=google.com&platform=cordova-2.0.0');
+                app.loadApiRequest();
+                expect(app.goto).toHaveBeenCalledWith('google.com?enableripple=cordova-2.0.0');
+            });
         });
     });
 
@@ -167,6 +207,24 @@ describe('app', function() {
             spyOn(app, 'show');
             app.loadPageRequest();
             expect(app.show).toHaveBeenCalledWith('content');
+        });
+    });
+
+    describe('goto', function() {
+        it('should add qs "?enableripple=cordova" if missing', function() {
+            expect(false).toBe(true);
+        });
+
+        it('should add qs "&enableripple=cordova" if missing', function() {
+            expect(false).toBe(true);
+        });
+
+        it('should preserve qs "enableripple" if available', function() {
+            expect(false).toBe(true);
+        });
+
+        it('should add http:// to the url', function() {
+            expect(false).toBe(true);
         });
     });
 });
