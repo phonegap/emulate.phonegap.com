@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>emulate.phonegap.com</title>
+        <title>Apache Cordova Emulation powered by Ripple</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" src="js/index.js"></script>
@@ -13,7 +13,6 @@
     </head>
     <body>
         <section id="header">
-            <h1>Ripple Emulator</h1>
             <div class="logo"></div>
         </section>
 
@@ -29,20 +28,20 @@
 
             <section class="docs box light-box">
                 <h1>Getting Started</h1>
-                <h2>Emulate PhoneGap</h2>
+                <h2>Emulate Apache Cordova</h2>
                 <ul>
                     <li><a href="#">http://cordova.io</a></li>
                     <li><a href="#">http://localhost:3000</a></li>
                 </ul>
                 <h2>Emulate a Specific Platform</h2>
                 <ul>
-                    <li><a href="#">http://cordova.io?platform=phonegap</a></li>
                     <li><a href="#">http://cordova.io?platform=cordova</a></li>
+                    <li><a href="#">http://cordova.io?platform=phonegap</a></li>
                 </ul>
                 <h2>Emulate a Specific Platform Version</h2>
                 <ul>
-                    <li><a href="#">http://cordova.io?platform=phonegap-1.0.0</a></li>
                     <li><a href="#">http://cordova.io?platform=cordova-1.0.0</a></li>
+                    <li><a href="#">http://cordova.io?platform=phonegap-1.0.0</a></li>
                 </ul>
             </section>
 
@@ -50,14 +49,14 @@
                 <h1>API</h1>
                 <h2>Overview</h2>
                 <p>
-                    The PhoneGap emulator can be invoked with a web request.
+                    The Apache Cordova emulator can be invoked with a web request.
                     The request options are provided as query string parameters and
                     the response will check for all dependencies before opening
                     the Ripple emulator.
                 </p>
                 <h2>Request</h2>
                 <ul>
-                    <li>http://emulate.phonegap.com?url=&lt;url&gt;&amp;platform=&lt;platform&gt;</li>
+                    <li>http://emulate.cordova.io?url=&lt;url&gt;&amp;platform=&lt;platform&gt;</li>
                 </ul>
                 <h2>Parameters</h2>
                 <h3>URL</h3>
@@ -65,20 +64,20 @@
                     <li>The <code>url</code> is the address of your local or public web app.</li>
                     <li>The <code>url</code> is a required parameter.</li>
                     <li><h3>Examples:</h3></li>
-                    <li><a href="#">http://emulate.phonegap.com?url=cordova.io</a></li>
-                    <li><a href="#">http://emulate.phonegap.com?url=http://cordova.io</a></li>
-                    <li><a href="#">http://emulate.phonegap.com?url=http://cordova.io/images</a></li>
+                    <li><a href="#">http://emulate.cordova.io?url=cordova.io</a></li>
+                    <li><a href="#">http://emulate.cordova.io?url=http://cordova.io</a></li>
+                    <li><a href="#">http://emulate.cordova.io?url=http://cordova.io/images</a></li>
                 </ul>
                 <h3>Platform</h3>
                 <ul>
                     <li>The <code>platform</code> is the environment to emulate.</li>
                     <li>The <code>platform</code> is an optional parameter.</li>
                     <li><h3>Emulates latest version:</h3></li>
-                    <li><a href="#">http://emulate.phonegap.com?url=cordova.io&platform=cordova</a></li>
-                    <li><a href="#">http://emulate.phonegap.com?url=cordova.io&platform=phonegap</a></li>
+                    <li><a href="#">http://emulate.cordova.io?url=cordova.io&platform=cordova</a></li>
+                    <li><a href="#">http://emulate.cordova.io?url=cordova.io&platform=phonegap</a></li>
                     <li><h3>Emulates specific version:</h3></li>
-                    <li><a href="#">http://emulate.phonegap.com?url=cordova.io&platform=cordova-1.6.0</a></li>
-                    <li><a href="#">http://emulate.phonegap.com?url=cordova.io&platform=phonegap-1.0.0</a></li>
+                    <li><a href="#">http://emulate.cordova.io?url=cordova.io&platform=cordova-1.6.0</a></li>
+                    <li><a href="#">http://emulate.cordova.io?url=cordova.io&platform=phonegap-1.0.0</a></li>
                 </ul>
                 <p></p>
             </section>
