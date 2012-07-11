@@ -51,19 +51,9 @@ var app = {
         return !!this.queryString().match(/url=/);
     },
     loadApiRequest: function() {
-        var url = this.queryString().match(/url=([^&]*)/)[1];
-        url = decodeURIComponent(url);
-
-        var platform = this.queryString().match(/(platform=[^&]*)/);
-        if (platform) {
-            platform = platform[1].replace('platform=', 'enableripple=');
-
-            var delimiters = url.match(/[\?\&]+/g);
-            var delimiter = (delimiters) ? '&' : '?';
-            url = url + delimiter + platform;
-        }
-
-        this.goto(url);
+        var uri = this.queryString().match(/url=([^&]*)/)[1];
+        uri = decodeURIComponent(uri);
+        this.goto(uri);
     },
     loadPageRequest: function(uri) {
         if (uri) {
@@ -74,6 +64,8 @@ var app = {
         }
     },
     goto: function (uri) {
+        uri = uri.replace('platform=', 'enableripple=');
+
         if (!uri.match(/enableripple=/)) {
             uri += uri.match(/\?/) ? "&" : "?";
             uri += 'enableripple=cordova';
