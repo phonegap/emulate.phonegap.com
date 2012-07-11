@@ -101,3 +101,20 @@ var app = {
         }
     }
 };
+
+var page = {
+    initialize: function() {
+        document.body.addEventListener('click', function(e) {
+            var el = e.target;
+            if (el.href && el.href.match(/#$/)) {
+                e.preventDefault();
+                if (el.text.match(/^emulate\./)) {
+                    app.redirect(el.text);
+                }
+                else {
+                    app.goto(el.text);
+                }
+            }
+        });
+    }
+};
