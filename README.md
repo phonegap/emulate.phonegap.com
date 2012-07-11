@@ -2,7 +2,6 @@ RippleBot
 =========
 
 > Apache Cordova emulation by Ripple
-> [emulate.cordova.io](http://emulate.cordova.io)
 
                           D888888888D                               
                       D888Z~.......:$8888                           
