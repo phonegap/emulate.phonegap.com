@@ -22,14 +22,14 @@ describe('app', function() {
             it('should pass the page address to load', function() {
                 runs(function() {
                     spyOn(app, 'loadPageRequest');
-                    helper.id('page-request-address').value = 'http://google.com?q=s';
+                    helper.id('page-request-address').value = 'http://cordova.io?q=s';
                     helper.submit('page-request-form');
                 });
                 waitsFor(function() {
                     return (app.loadPageRequest.calls.length > 0);
                 }, 'loadPageRequest should be called once', 500);
                 runs(function() {
-                    expect(app.loadPageRequest).toHaveBeenCalledWith('http://google.com?q=s');
+                    expect(app.loadPageRequest).toHaveBeenCalledWith('http://cordova.io?q=s');
                 });
             });
         });
@@ -156,7 +156,7 @@ describe('app', function() {
         });
 
         it('should be true when the url qs exists', function() {
-            spyOn(app, 'queryString').andReturn('?url=google.com');
+            spyOn(app, 'queryString').andReturn('?url=cordova.io');
             expect(app.hasApiRequest()).toBe(true);
         });
     });
@@ -164,16 +164,16 @@ describe('app', function() {
     describe('loadApiRequest', function() {
         it('should goto "url" in qs', function() {
             spyOn(app, 'goto');
-            spyOn(app, 'queryString').andReturn('?url=google.com');
+            spyOn(app, 'queryString').andReturn('?url=cordova.io');
             app.loadApiRequest();
-            expect(app.goto).toHaveBeenCalledWith('google.com');
+            expect(app.goto).toHaveBeenCalledWith('cordova.io');
         });
 
         it('should goto "url" in qs and unescape any args', function() {
             spyOn(app, 'goto');
-            spyOn(app, 'queryString').andReturn('?url=google.com%3Fq%3Dvalue');
+            spyOn(app, 'queryString').andReturn('?url=cordova.io%3Fq%3Dvalue');
             app.loadApiRequest();
-            expect(app.goto).toHaveBeenCalledWith('google.com?q=value');
+            expect(app.goto).toHaveBeenCalledWith('cordova.io?q=value');
         });
     });
 
@@ -189,8 +189,8 @@ describe('app', function() {
         describe('with args', function() {
             it('should goto requested page', function() {
                 spyOn(app, 'goto');
-                app.loadPageRequest('http://google.com?q=s');
-                expect(app.goto).toHaveBeenCalledWith('http://google.com?q=s');
+                app.loadPageRequest('http://cordova.io?q=s');
+                expect(app.goto).toHaveBeenCalledWith('http://cordova.io?q=s');
             });
         });
     });
@@ -198,73 +198,73 @@ describe('app', function() {
     describe('goto', function() {
         it('should redirect the browser', function() {
             spyOn(app, 'redirect');
-            app.goto('google.com');
-            expect(app.redirect.mostRecentCall.args[0]).toMatch('google.com');
+            app.goto('cordova.io');
+            expect(app.redirect.mostRecentCall.args[0]).toMatch('cordova.io');
         });
 
         describe('platform parameter', function() {
             it('should be renamed to "enableripple"', function() {
                 spyOn(app, 'redirect');
-                app.goto('http://google.com?platform=cordova');
-                expect(app.redirect).toHaveBeenCalledWith('http://google.com?enableripple=cordova');
+                app.goto('http://cordova.io?platform=cordova');
+                expect(app.redirect).toHaveBeenCalledWith('http://cordova.io?enableripple=cordova');
             });
 
             it('should be appended as "?enableripple" when no params exist', function() {
                 spyOn(app, 'redirect');
-                app.goto('http://google.com');
-                expect(app.redirect).toHaveBeenCalledWith('http://google.com?enableripple=cordova');
+                app.goto('http://cordova.io');
+                expect(app.redirect).toHaveBeenCalledWith('http://cordova.io?enableripple=cordova');
             });
 
             it('should be appended as "&enableripple" when params exist', function() {
                 spyOn(app, 'redirect');
-                app.goto('http://google.com?q=s');
-                expect(app.redirect).toHaveBeenCalledWith('http://google.com?q=s&enableripple=cordova');
+                app.goto('http://cordova.io?q=s');
+                expect(app.redirect).toHaveBeenCalledWith('http://cordova.io?q=s&enableripple=cordova');
             });
 
             it('should support the format platform=<name>-<version>', function() {
                 spyOn(app, 'redirect');
-                app.goto('http://google.com?platform=cordova-2.0.0');
-                expect(app.redirect).toHaveBeenCalledWith('http://google.com?enableripple=cordova-2.0.0');
+                app.goto('http://cordova.io?platform=cordova-2.0.0');
+                expect(app.redirect).toHaveBeenCalledWith('http://cordova.io?enableripple=cordova-2.0.0');
             });
         });
 
         describe('protocol', function() {
             it('should add missing http:// to the url', function() {
                 spyOn(app, 'redirect');
-                app.goto('google.com');
-                expect(app.redirect.mostRecentCall.args[0]).toMatch('^http://google.com');
+                app.goto('cordova.io');
+                expect(app.redirect.mostRecentCall.args[0]).toMatch('^http://cordova.io');
             });
 
             it('should preserve existing http://', function() {
                 spyOn(app, 'redirect');
-                app.goto('http://google.com');
-                expect(app.redirect.mostRecentCall.args[0]).toMatch('^http://google.com');
+                app.goto('http://cordova.io');
+                expect(app.redirect.mostRecentCall.args[0]).toMatch('^http://cordova.io');
             });
 
             it('should preserve existing https://', function() {
                 spyOn(app, 'redirect');
-                app.goto('https://google.com');
-                expect(app.redirect.mostRecentCall.args[0]).toMatch('^https://google.com');
+                app.goto('https://cordova.io');
+                expect(app.redirect.mostRecentCall.args[0]).toMatch('^https://cordova.io');
             });
         });
 
         describe('enableripple parameter', function() {
             it('should add "?enableripple=cordova" if missing', function() {
                 spyOn(app, 'redirect');
-                app.goto('http://google.com');
-                expect(app.redirect).toHaveBeenCalledWith('http://google.com?enableripple=cordova');
+                app.goto('http://cordova.io');
+                expect(app.redirect).toHaveBeenCalledWith('http://cordova.io?enableripple=cordova');
             });
 
             it('should add "&enableripple=cordova" if missing', function() {
                 spyOn(app, 'redirect');
-                app.goto('http://google.com?q=s');
-                expect(app.redirect).toHaveBeenCalledWith('http://google.com?q=s&enableripple=cordova');
+                app.goto('http://cordova.io?q=s');
+                expect(app.redirect).toHaveBeenCalledWith('http://cordova.io?q=s&enableripple=cordova');
             });
 
             it('should preserve "enableripple=cordova" if available', function() {
                 spyOn(app, 'redirect');
-                app.goto('http://google.com?enableripple=cordova');
-                expect(app.redirect).toHaveBeenCalledWith('http://google.com?enableripple=cordova');
+                app.goto('http://cordova.io?enableripple=cordova');
+                expect(app.redirect).toHaveBeenCalledWith('http://cordova.io?enableripple=cordova');
             });
         });
     });
