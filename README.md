@@ -1,7 +1,7 @@
 RippleBot
 =========
 
-> Apache Cordova emulation by Ripple
+> Ripple emulation for PhoneGap's JavaScript environment
 
                           D888888888D                               
                       D888Z~.......:$8888                           
